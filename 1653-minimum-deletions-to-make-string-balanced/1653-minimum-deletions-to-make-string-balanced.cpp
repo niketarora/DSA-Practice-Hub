@@ -7,13 +7,13 @@ public:
         numsA.push_back(0);
         int count = 0;
         for(int i=0; i<n-1; i++){
-            if(s[i] == 'b')   count++;
+            if(s[i] == 98)   count++;
             numsA.push_back(count);
         }
         numsB[n-1] = 0;
         count = 0;
         for(int j=n-1; j>0; j--){
-            if(s[j] == 'a')   count++;
+            if(s[j] == 97)   count++;
             numsB[j-1] = count;
         }
         int sum = INT_MAX;
