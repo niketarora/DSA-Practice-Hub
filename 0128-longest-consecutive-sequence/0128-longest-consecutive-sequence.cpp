@@ -1,31 +1,25 @@
-#include <vector>
-#include <unordered_set>
-#include <algorithm>
-
 class Solution {
 public:
-    int longestConsecutive(std::vector<int>& nums) {
-        // Convert to set for O(1) lookups and to handle duplicates automatically
-        std::unordered_set<int> numSet(nums.begin(), nums.end());
-        int longestStreak = 0;
-
-        for (int num : numSet) {
-            // Check if 'num' is the start of a sequence
-            // If num - 1 exists, 'num' is not the start; skip it to avoid O(n^2)
-            if (numSet.find(num - 1) == numSet.end()) {
-                int currentNum = num;
-                int currentStreak = 1;
-
-                // Count consecutive numbers starting from 'currentNum'
-                while (numSet.find(currentNum + 1) != numSet.end()) {
-                    currentNum += 1;
-                    currentStreak += 1;
+    int longestConsecutive(vector<int>& nums) {
+        int n = nums.size();
+        unordered_set<int> s;
+        for(int i=0; i<n; i++){
+            s.insert(nums[i]);
+        }
+        int ans = 0;
+        for(auto ele : s){
+            if(s.find(ele - 1) != s.end()){
+                continue;
+            }else{
+                int count = 0;
+                int curr = ele;
+                while(s.find(curr) != s.end()){
+                    count++;
+                    curr++;
                 }
-
-                longestStreak = std::max(longestStreak, currentStreak);
+                ans = max(ans, count);
             }
         }
-
-        return longestStreak;
+        return ans;
     }
 };
