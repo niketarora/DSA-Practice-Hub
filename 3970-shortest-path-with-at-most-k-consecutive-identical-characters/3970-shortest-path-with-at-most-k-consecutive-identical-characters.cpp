@@ -1,7 +1,7 @@
 class Solution {
 public:
     typedef tuple<int, int, int>  T ;   // {dist, node, count}
-    
+
     int shortestPath(int n, vector<vector<int>>& edges, string labels, int k) {
         unordered_map<int, vector<vector<int>>> adj;
         for (auto &edge : edges) {
